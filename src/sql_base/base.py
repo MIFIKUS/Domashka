@@ -15,8 +15,10 @@ def create_base(file_path: str, sql_file: str) -> None:
 
     for row in scripts.split(';'):
         try:
+            # print(row)
             cur.execute(row)
             connection.commit()
         except sqlite3.Error as error:
             print(error)
+            connection.rollback()
 
