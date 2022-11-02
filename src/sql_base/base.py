@@ -1,6 +1,5 @@
 import sqlite3
 import os
-from sqlite3 import Connection, Cursor
 
 
 class BaseWorker:
@@ -10,10 +9,6 @@ class BaseWorker:
 
     def check_base(self) -> bool:
         return os.path.exists(self.base_path)
-
-    # def connect(self):
-    #     self.connection = sqlite3.connect(self.base_path)
-    #     self.cur = self.connection.cursor()
 
     def create_base(self, sql_file: str) -> None:
         connection = sqlite3.connect(self.base_path)
