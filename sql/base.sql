@@ -1,17 +1,22 @@
-CREATE TABLE users(
-    id INTEGER NOT NULL PRIMARY KEY,
-    login VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL
-);
-
 CREATE TABLE students(
     id INTEGER NOT NULL PRIMARY KEY,
+    surname VARCHAR(100) NOT NULL,
     name VARCHAR(100) NOT NULL,
-    surname VARCHAR(100) NOT NULL
+    phone VARCHAR(100) NOT NULL UNIQUE
 );
 
-INSERT INTO users(login, password)
-VALUES ('login', 'password'), ('login1', 'password1');
+CREATE TABLE subjects(
+    id INTEGER NOT NULL PRIMARY KEY,
+    name VARCHAR(150)
+);
 
-INSERT INTO students(name, surname)
-VALUES ('name', 'surname'), ('name1', 'surname1');
+CREATE TABLE marks(
+    id INTEGER NOT NULL PRIMARY KEY,
+    student_id INTEGER NOT NULL,
+    subject_id INTEGER NOT NULL,
+    mark INTEGER NOT NULL,
+    FOREIGN KEY(student_id) REFERENCES students(id)
+                  ON DELETE CASCADE ON UPDATE NO ACTION,
+    FOREIGN KEY(subject_id) REFERENCES subjects(id)
+                  ON DELETE CASCADE ON UPDATE NO ACTION
+);

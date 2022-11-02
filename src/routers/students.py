@@ -1,16 +1,25 @@
 from fastapi import APIRouter
+from sql_base.models import Students
+import resolvers.students
 
 stud_router = APIRouter()
 
 
 @stud_router.get('/')
 def get_students():
-    return 'Students page'
+    return f'Response: {{text: Страница со списком студентов}}'
 
+
+@stud_router.post('/')
+def new_student(student: Students,):
+    new_id = resolvers.students.new_student(student)
+    return f'{{code: 201, id: {new_id}}}'
+    # return "123"
 
 @stud_router.get('/{stud_id}')
 def get_student(stud_id: int):
-    return f'Student {stud_id}'
+    return 'Student: {name: имя студена, surname: фамилия}'
+
 
 
 @stud_router.put('/{stud_id}')
