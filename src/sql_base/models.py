@@ -1,5 +1,14 @@
+from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel
+
+
+class User(BaseModel):
+    login: str
+    password: str
+    post: Optional[int]
+    reg_date: Optional[datetime]
+
 
 
 class Students(BaseModel):
@@ -7,6 +16,7 @@ class Students(BaseModel):
     surname: str
     name: str
     phone: str
+    snils: Optional[str]
 
 
 class Subjects(BaseModel):
