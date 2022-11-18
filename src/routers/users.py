@@ -16,4 +16,4 @@ def check_login(user: User, ):
     if post:
         return {"code": 200, "message": "Login correct", 'post': post}
     else:
-        return {"code": 404, "message": "Login incorrect, try again", 'post': None}
+        return {"code": 401, "message": "Login incorrect, try again", 'post': None}
